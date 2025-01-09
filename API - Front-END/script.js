@@ -5,73 +5,111 @@ document.addEventListener("DOMContentLoaded", () => {
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
     const confirmPasswordInput = document.getElementById("confirm_password");
-
     const errorName = document.getElementById("error_name");
     const errorLastName = document.getElementById("error_last_name");
     const errorEmail = document.getElementById("error_email");
     const errorPassword = document.getElementById("error_password");
     const errorConfirmPassword = document.getElementById("error_confirm_password");
 
-    form.addEventListener("submit", (event) => {
+    // Objet pour stocker les données du formulaire
+    const formData = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+    };
+
+    // Mettre à jour formData lors de la saisie de l'utilisateur
+    firstNameInput.addEventListener("input", (e) => {
+        formData.firstName = e.target.value;
+        console.log(formData);
+    });
+
+    lastNameInput.addEventListener("input", (e) => {
+        formData.lastName = e.target.value;
+        console.log(formData);
+    });
+
+    emailInput.addEventListener("input", (e) => {
+        formData.email = e.target.value;
+        console.log(formData);
+    });
+
+    passwordInput.addEventListener("input", (e) => {
+        formData.password = e.target.value;
+        console.log(formData);
+    });
+
+    confirmPasswordInput.addEventListener("input", (e) => {
+        formData.confirmPassword = e.target.value;
+        console.log(formData);
+    });
+
+    // Soumission du formulaire avec validation
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        console.log(formData);
+
         let isValid = true;
 
-        // Réinitialiser les styles et messages d'erreur
-        firstNameInput.classList.remove("error");
-        lastNameInput.classList.remove("error");
-        emailInput.classList.remove("error");
-        passwordInput.classList.remove("error");
-        confirmPasswordInput.classList.remove("error");
-
+        // Réinitialisation des erreurs
         errorName.style.display = "none";
         errorLastName.style.display = "none";
         errorEmail.style.display = "none";
         errorPassword.style.display = "none";
         errorConfirmPassword.style.display = "none";
 
-        // Validation du prénom (minimum 3 caractères)
-        if (firstNameInput.value.trim().length < 3) {
+        firstNameInput.classList.remove("error");
+        lastNameInput.classList.remove("error");
+        emailInput.classList.remove("error");
+        passwordInput.classList.remove("error");
+        confirmPasswordInput.classList.remove("error");
+
+        // Validation du prénom
+        if (!formData.firstName || formData.firstName.trim().length < 3) {
             isValid = false;
             firstNameInput.classList.add("error");
-            errorName.style.display = "inline";
+            errorName.style.display = "block";
+            errorName.innerText = "Veuillez entrer un prénom (minimum 3 caractères) !";
         }
 
-        // Validation du nom (minimum 3 caractères)
-        if (lastNameInput.value.trim().length < 3) {
+        // Validation du nom de famille
+        if (!formData.lastName || formData.lastName.trim().length < 3) {
             isValid = false;
             lastNameInput.classList.add("error");
-            errorLastName.style.display = "inline";
+            errorLastName.style.display = "block";
+            errorLastName.innerText = "Veuillez entrer un nom de famille (minimum 3 caractères) !";
         }
 
         // Validation de l'email
-        if (emailInput.value.trim() === "") {
+        if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
             isValid = false;
             emailInput.classList.add("error");
-            errorEmail.textContent = "Veuillez entrer une adresse email !";
-            errorEmail.style.display = "inline";
-        } else if (!/\S+@\S+\.\S+/.test(emailInput.value)) {
-            isValid = false;
-            emailInput.classList.add("error");
-            errorEmail.textContent = "Format d'email invalide !";
-            errorEmail.style.display = "inline";
+            errorEmail.style.display = "block";
+            errorEmail.innerText = "Veuillez entrer une adresse email valide !";
         }
 
-        // Validation du mot de passe (minimum 8 caractères)
-        if (passwordInput.value.trim().length < 8) {
+        // Validation du mot de passe
+        if (!formData.password || formData.password.length < 8) {
             isValid = false;
             passwordInput.classList.add("error");
-            errorPassword.style.display = "inline";
+            errorPassword.style.display = "block";
+            errorPassword.innerText = "Le mot de passe doit contenir au moins 8 caractères !";
         }
 
         // Validation de la confirmation du mot de passe
-        if (confirmPasswordInput.value !== passwordInput.value) {
+        if (formData.password !== formData.confirmPassword) {
             isValid = false;
             confirmPasswordInput.classList.add("error");
-            errorConfirmPassword.style.display = "inline";
+            errorConfirmPassword.style.display = "block";
+            errorConfirmPassword.innerText = "Les mots de passe ne correspondent pas !";
         }
 
-        // Empêcher l'envoi du formulaire si validation échoue
-        if (!isValid) {
-            event.preventDefault();
+        // Soumettre le formulaire si toutes les validations sont réussies
+        if (isValid) {
+            console.log("Formulaire soumis avec succès !");
+            // Vous pouvez envoyer les données ici avec fetch ou autre
         }
     });
 });

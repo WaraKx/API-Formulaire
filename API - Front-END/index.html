@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Formulaire d'inscription</title>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <form id="mon_form">
-            <h2>Formulaire d'inscription</h2>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'inscription</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-            <label for="first_name">Prénom</label>
-            <input type="text" id="first_name" />
-            <span id="error_name">Veuillez entrer un prénom (minimum 3 caractères) !</span>
+    <form id="mon_form">
+        <h2>Formulaire d'inscription</h2>
 
-            <label for="last_name">Nom</label>
-            <input type="text" id="last_name" />
-            <span id="error_last_name">Veuillez entrer un nom (minimum 3 caractères) !</span>
+        <label for="first_name">Prénom</label>
+        <input type="text" id="first_name" />
+        <span id="error_name">Le prénom est requis et doit comporter au moins 3 caractères.</span>
 
-            <label for="email">Adresse email</label>
-            <input type="email" id="email" />
-            <span id="error_email">Veuillez entrer une adresse email valide !</span>
+        <label for="last_name">Nom de famille</label>
+        <input type="text" id="last_name" />
+        <span id="error_last_name">Le nom de famille est requis et doit comporter au moins 3 caractères.</span>
 
-            <label for="password">Mot de passe</label>
-            <input type="password" id="password" />
-            <span id="error_password">Le mot de passe doit comporter au moins 8 caractères !</span>
+        <label for="email">Email</label>
+        <input type="email" id="email" />
+        <span id="error_email">Veuillez entrer une adresse email valide.</span>
 
-            <label for="confirm_password">Confirmer le mot de passe</label>
-            <input type="password" id="confirm_password" />
-            <span id="error_confirm_password">Les mots de passe ne correspondent pas !</span>
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" />
+        <span id="error_password">Le mot de passe doit comporter au moins 8 caractères.</span>
 
-            <button type="submit">Envoyer</button>
-        </form>
-        <script src="script.js"></script>
-    </body>
+        <label for="confirm_password">Confirmer le mot de passe</label>
+        <input type="password" id="confirm_password" />
+        <span id="error_confirm_password">Les mots de passe ne correspondent pas.</span>
+
+        <button type="submit">Envoyer</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
 </html>
